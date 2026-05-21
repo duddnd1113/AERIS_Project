@@ -34,3 +34,5 @@ plots/
 RoadExtension_V3/checkpoints/.DS_Store
 3_RoadExtension/RoadExtension_V2/checkpoints/rain_cache.csv
 3_RoadExtension/RoadExtension_V2/checkpoints/rain_cache.csv
+.DS_Store
+**/.DS_Store
