@@ -20,6 +20,7 @@ __pycache__/
 *.pth
 *.gpkg
 *.pkl
+3_RoadExtension/RoadExtension_V3/checkpoints/construction_cache.csv
 
 # ── graphs/ 는 경량 npy라 추적 유지 ─────────────────────────────────────────
 !graphs/
@@ -30,4 +31,6 @@ __pycache__/
 *.log
 plots/
 
-RoadExtension_V3/checkpoints/
+RoadExtension_V3/checkpoints/.DS_Store
+3_RoadExtension/RoadExtension_V2/checkpoints/rain_cache.csv
+3_RoadExtension/RoadExtension_V2/checkpoints/rain_cache.csv

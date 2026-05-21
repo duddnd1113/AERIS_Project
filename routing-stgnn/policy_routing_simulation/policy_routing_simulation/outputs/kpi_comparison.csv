@@ -1,3 +1,0 @@
-policy,cleaned_grids,route_km,pollution_reduction_sum_PM,exposure_reduction_sum_PMxPop,high_risk_hit_rate,cleaned_high_risk_grids,route_efficiency_exposure_per_km
-Current-Reactive,19,75.32448590415544,3112.0401576139134,3938969.202746287,0.5789473684210527,11,52293.34333271547
-Ours-Predictive,100,77.7960208121512,16512.499944384068,27556638.222539946,1.0,100,354216.55162902357
