@@ -2,7 +2,7 @@
 
 AERIS is a project developed for the [Engineering Industry Competition](https://engcontest.kenca.or.kr/).
 
-This repository contains the full pipeline for PM10 prediction, road dust extension, and routing optimization, aiming to support cleaner and smarter urban mobility.
+모델 구현·실험·해석을 위한 **Git Repository**
 
 ---
 
