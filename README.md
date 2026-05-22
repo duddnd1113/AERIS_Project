@@ -2,7 +2,7 @@
 
 AERIS is a project developed for the [Engineering Industry Competition](https://engcontest.kenca.or.kr/).
 
-모델 구현·실험·해석을 위한 **Git Repository**
+**Git Repository** for Model Implementation, Experiments, and Analysis
 
 ---
 
