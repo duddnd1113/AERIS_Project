@@ -1,9 +1,9 @@
-# 🌫️AERIS: Air-quality Embedding and Routing via Intelligent Systems
-# 재비산먼지 예측 기반 지능형 청소차 운영 시스템템
+# 🌫️AERIS: 재비산먼지 예측 기반 지능형 청소차 운영 시스템
 
-## 엔지니어링산업 경진대회 프로젝트
+## A GitHub repository for Engineering Industry Competition project.
+https://engcontest.kenca.or.kr/
 
-본 프로젝트는 **AI 기반 모델링 및 최적화**를 통해 도시 대기오염 문제를 실제로 해결하는 것을 목표로 한다.
+This repository contains the full pipeline for our Engineering Industry Competition project, including PM10 prediction, road dust extension, and routing optimization.
 
 ---
 
