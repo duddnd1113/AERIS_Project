@@ -6,6 +6,14 @@ This repository contains the full pipeline for PM10 prediction, road dust extens
 
 ---
 
+## Project Overview
+
+<p align="center">
+  <img src="poster.png" width="850">
+</p>
+
+
+
 ## Engineering Industry Competition Project
 
 This project focuses on solving real-world urban air pollution problems through **AI-based modeling and optimization**.
@@ -241,14 +249,14 @@ AERIS_Project/
 
 ---
 
----
 
 ## 👤 Author
 
 Yonsei University
 Industrial Engineering @duddnd1113 @dddlmss & 
+
 Urban Planning and Engineering @tak & 
+
 Quantitative Risk Management @sonyein
 
----
 ---
