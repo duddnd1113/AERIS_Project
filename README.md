@@ -6,124 +6,145 @@ This repository contains the full pipeline for PM10 prediction, road dust extens
 
 ---
 
-## 개요
+## Engineering Industry Competition Project
 
-**동적 PM10 지도 생성 시스템**을 구축하고, 이를 두 가지 핵심 최적화 문제에 활용:
+This project focuses on solving real-world urban air pollution problems through **AI-based modeling and optimization**.
 
-### 1️ 도로 청소 차량 경로 최적화
+---
 
-→ 흡입 차량의 경로를 최적화하여 도시 전체 오염을 최소화
+## Overview
 
-### 2️ 저노출 경로 최적화
+We build a **dynamic PM10 mapping system** and use it to solve two key optimization problems:
 
-→ 보행자에게 오염 노출을 최소화하는 경로 제공
+### 1️ Road Cleaning Vehicle Routing Optimization
+
+→ Minimize overall city pollution by optimizing suction vehicle routes
+
+### 2️ Low-Exposure Path Optimization
+
+→ Provide routes for pedestrians that minimize pollution exposure
 
 ---
 
 ## Motivation
 
-도시 대기오염은 단순한 예측 문제가 아닌
+Urban air pollution is not just a prediction problem.
 
-**의사결정 문제**이이다:
+It is a **decision-making problem**:
 
-* 청소 차량은 어디서 운행해야 하는가?
-* 사람들은 노출을 줄이기 위해 어떻게 이동해야 하는가?
+* Where should cleaning vehicles operate?
+* How should people move to reduce exposure?
 
-이 질문에 답하기 위해서는:
-→ **동적·고해상도 오염 지도**가 필요하하다.
-
----
-
-## Methodology
-
-### 1. ST-GNN (시공간 그래프 신경망)
-
-* 오염물질이 지점 간에 어떻게 확산되는지 모델링
-* 바람 방향을 고려한 방향성 그래프 활용
-* GRU를 통한 시간적 동역학 포착
+To answer these questions, we need:
+→ **Dynamic, high-resolution pollution maps**
 
 ---
 
-### 2. HiddenExtension (Wind-IDW)
+## Method
 
-* 지역별 오염 발생 요인 포착
-* 포함 요소:
+### 1. ST-GNN (Transport Modeling)
 
-  * 도로 밀도
-  * 토지 이용
-  * 생활인구
-  * 도시 구조
+* Models how pollution spreads across locations
+* Uses wind-aware directed graph
+* Captures temporal dynamics via GRU
 
 ---
 
-### 3. 하이브리드 모델
+### 2. HiddenExtension
 
-PM = f(지리적 특성, ST-GNN 표현)
+* Captures local pollution generation factors
+* Includes:
 
-→ **이동 역학 + 지역 발생**을 결합
-
----
-
-### 4. 동적 PM 지도
-
-시간에 따라 변화하는 **도시 전역 오염 지도**를 생성합니다.
+  * Road density
+  * Land use
+  * Population
+  * Urban structure
 
 ---
 
-## 최적화 태스크
+### 3. RoadExtension
 
-### 🚗 (1) 흡입 차량 경로 최적화
+PM = f(Geographic Features, ST-GNN Representation)
 
-목표:
-
-* 도시 전체 PM 수준 감소
-
-접근 방식:
-
-* 고오염 구역 식별
-* 청소 효율을 극대화하는 차량 경로 최적화
+→ Combines **transport dynamics + local generation**
 
 ---
 
-### 🚶 (2) 저노출 경로 최적화
+### 4. Dynamic PM Map
 
-목표:
-
-* PM 노출을 최소화하는 이동 경로 탐색
-
-접근 방식:
-
-* 동적 PM 지도 활용
-* 누적 오염이 가장 낮은 경로 탐색
+We generate a **city-wide pollution map** that changes over time.
 
 ---
 
-## 주요 특징
+## Optimization Tasks
 
-* 물리적 해석 가능한 엣지 기반 ST-GNN
-* 동적 오염 지도 생성
-* 두 가지 실제 적용 최적화:
+### 🚗 (1) Suction Vehicle Route Optimization
 
-  * 차량 경로 최적화
-  * 보행자 경로 최적화
+Goal:
 
----
+* Reduce overall city PM levels
 
-## 📊 데이터
+Approach:
 
-* 대기질 측정 관측소 (서울)
-* 기상 데이터 (풍향, 기온)
-* 지리적 특성 (도로 밀도, 토지 이용)
+* Identify high-pollution areas
+* Optimize vehicle routes to maximize cleaning efficiency
 
 ---
 
-## 핵심 인사이트
+### 🚶 (2) Low-Exposure Path Optimization
 
-본 프로젝트는 대기오염 모델링을 다음과 같이 재정의합니다:
+Goal:
 
-> **단순 예측이 아닌, 도시 최적화를 위한 의사결정 지원 시스템**
+* Minimize human exposure to PM
+
+Approach:
+
+* Use dynamic PM map
+* Find paths with lowest cumulative pollution
 
 ---
+
+## Key Features
+
+* Edge-aware ST-GNN with physical interpretation
+* Dynamic pollution map generation
+* Two real-world optimization applications:
+
+  * Vehicle routing
+  * Human path optimization
+
+---
+
+## 📊 Data
+
+* Air quality monitoring stations (Seoul)
+* Meteorological data (wind, temperature)
+* Geographic features (road density, land use)
+
+---
+
+## Key Insight
+
+This project reframes air pollution modeling as:
+
+> **A decision-support system for urban optimization, not just prediction**
+
+---
+
+## Hidden Extension 버전 히스토리
+
+ST-GNN hidden vector를 city-wide grid로 확장하는 실험 시리즈.
+
+| 버전 | 폴더 | 핵심 방법 | best direct MAE | vs ST-GNN baseline |
+|------|------|----------|----------------|-------------------|
+| ST-GNN | `checkpoints/` | Station forecasting | **2.6144** | - |
+| V1 | `HiddenExtension_V1/` | Cross-attention + 6D LUR (공유 compressor) | 2.6659 | ↓악화 |
+| V2 | `HiddenExtension_V2/` | Cross-attention + 9D LUR (독립 compressor) | 2.6105 | ↑0.0039 개선 |
+| V3 | `HiddenExtension_V3/` | Wind-aware IDW + Random Forest | (진행 중) | 목표 < 2.55 |
+
+각 버전의 상세 실험 설계, 결과, 교훈은 해당 폴더의 `README.md` 참고.
+
+
 
 ## 📁 파일 구조
 
@@ -179,22 +200,6 @@ AERIS_Project/
 
 ---
 
-## Hidden Extension 버전 히스토리
-
-ST-GNN hidden vector를 city-wide grid로 확장하는 실험 시리즈.
-
-| 버전 | 폴더 | 핵심 방법 | best direct MAE | vs ST-GNN baseline |
-|------|------|----------|----------------|-------------------|
-| ST-GNN | `1_ST-GNN_Modeling/checkpoints/` | Station forecasting | **2.6144** | - |
-| V1 | `2_HiddenExtension/HiddenExtension_V1/` | Cross-attention + 6D LUR (공유 compressor) | 2.6659 | ↓악화 |
-| V2 | `2_HiddenExtension/HiddenExtension_V2/` | Cross-attention + 9D LUR (독립 compressor) | 2.6105 | ↑0.0039 개선 |
-| V3 | `2_HiddenExtension/HiddenExtension_V3/` | Wind-aware IDW + Random Forest | (진행 중) | 목표 < 2.55 |
-| V4 | `2_HiddenExtension/HiddenExtension_V4/` | (진행 중) | - | - |
-| V5 | `2_HiddenExtension/HiddenExtension_V5/` | (진행 중) | - | - |
-
-각 버전의 상세 실험 설계, 결과, 교훈은 해당 폴더의 `README.md` 참고.
-
----
 
 ## 📚 Appendix
 
@@ -236,9 +241,14 @@ ST-GNN hidden vector를 city-wide grid로 확장하는 실험 시리즈.
 
 ---
 
+---
 
 ## 👤 Author
 
 Yonsei University
-Industrial Engineering @duddnd1113 @dddlmss & Urban Planning and Engineering @tak & Quantitative Risk Management @sonyein
+Industrial Engineering @duddnd1113 @dddlmss & 
+Urban Planning and Engineering @tak & 
+Quantitative Risk Management @sonyein
+
+---
 ---
