@@ -12,6 +12,13 @@ AERIS is a project developed for the [Engineering Industry Competition](https://
   <img src="poster.png" width="850">
 </p>
 
+---
+
+## Key Insight
+
+This project reframes air pollution modeling as:
+
+> **A decision-support system for urban optimization, not just prediction**
 
 
 ---
@@ -22,19 +29,12 @@ AERIS is a project developed for the [Engineering Industry Competition](https://
 * Meteorological data (wind, temperature)
 * Geographic features (road density, land use)
 
----
-
-## Key Insight
-
-This project reframes air pollution modeling as:
-
-> **A decision-support system for urban optimization, not just prediction**
 
 ---
 
 
 
-## 📁 파일 구조
+## 📁 File Structure
 
 ```
 AERIS_Project/
